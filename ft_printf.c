@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-static void	handle_formats(va_list args, char *s, int *count_addr)
+static void	handle_formats(va_list args, char const *s, int *count_addr)
 {
 	if (*s == 'c')
 		handle_char(va_arg(args, int), count_addr);
@@ -23,7 +23,7 @@ static void	handle_formats(va_list args, char *s, int *count_addr)
 		handle_char('%', count_addr);
 }
 
-int	ft_printf(char *s, ...)
+int	ft_printf(char const *s, ...)
 {
 	va_list	args;
 	int		count;

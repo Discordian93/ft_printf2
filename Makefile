@@ -14,7 +14,7 @@ SRCS = ft_printf.c handlers.c hexhelpers.c uhelpers.c
 OBJS = $(SRCS:.c=.o)
 
 # Header files
-HEADER = handlers.h hexhelpers.h uhelpers.h
+HEADER = handlers.h hexhelpers.h uhelpers.h ft_printf.h
 
 # Rule to compile your library
 all: $(NAME)

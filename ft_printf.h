@@ -10,13 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HANDLERS_H
-# define HANDLERS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void		handle_x(unsigned long long n, int *count, int lowercase, int is_p);
-void		handle_char(char c, int *count);
-void		handle_string(char *s, int *count);
-void		handle_u(unsigned long long u, int *count);
-void		handle_num(int n, int *count);
+int			ft_printf(char const *s, ...);
 
 #endif
