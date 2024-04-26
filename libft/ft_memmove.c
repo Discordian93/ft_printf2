@@ -3,35 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:05:43 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:05:49 by jotavare         ###   ########.fr       */
+/*   Created: 2023/09/14 15:23:00 by esteizag          #+#    #+#             */
+/*   Updated: 2023/09/14 15:23:02 by esteizag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-#include "libft.h"
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const unsigned char	*s;
-	unsigned char		*d;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if (!dest && !src)
-		return (dest);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
+	if (!dst && !src)
+		return (NULL);
+	d = (unsigned char *)dst;
 	s = (unsigned char *)src;
-	d = (unsigned char *)dest;
-	while (n--)
-		d[n] = s[n];
-	return (dest);
+	if (d < s)
+	{
+		while (len--)
+			*d++ = *s++;
+	}
+	else
+	{
+		d += len;
+		s += len;
+		while (len--)
+			*--d = *--s;
+	}
+	return (dst);
 }
-
-/*int main()
-{
-	char	str[] = "Vou ser copiado.";
-	char	dest[1];
-	ft_putstr_fd(ft_memmove(dest, str, 10), 1);
-	ft_putchar_fd('\n', 1);
-}*/

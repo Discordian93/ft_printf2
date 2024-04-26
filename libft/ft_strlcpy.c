@@ -3,35 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:12:56 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:12:57 by jotavare         ###   ########.fr       */
+/*   Created: 2023/09/14 18:37:00 by esteizag          #+#    #+#             */
+/*   Updated: 2023/09/14 18:37:02 by esteizag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
+	size_t	srclen;
 
-	if (!size)
-		return (ft_strlen(src));
-	i = 0;
-	while (src[i] && (i < size - 1))
+	srclen = ft_strlen(src);
+	if (size == 0)
 	{
-		dest[i] = src[i];
-		i++;
+		return (srclen);
 	}
-	dest[i] = 0;
-	return (ft_strlen(src));
+	while (*src != '\0' && --size)
+	{
+		*dst++ = *src++;
+	}
+	*dst = '\0';
+	return (srclen);
 }
-
-/*int	main()
-{
-	char	dest[] = "nem me vais ver!";
-	char	src[] = "nem a mim, mas vais saber o nosso tamanho!";
-	ft_putnbr_fd(ft_strlcpy(dest, src, 20), 1);
-	ft_putchar_fd('\n', 1);
-}*/

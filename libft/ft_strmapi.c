@@ -3,43 +3,56 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: esteizag <esteizag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:13:21 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:13:23 by jotavare         ###   ########.fr       */
+/*   Created: 2023/11/15 12:53:07 by esteizag          #+#    #+#             */
+/*   Updated: 2023/11/15 12:53:12 by esteizag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*new;
-	size_t	len;
-	size_t	i;
+	size_t		len;
+	char		*new_s;
+	size_t		i;
 
-	i = 0;
-	if (!s)
-		return (ft_strdup(""));
 	len = ft_strlen(s);
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
+	new_s = malloc(sizeof(char) * (len + 1));
+	if (new_s == NULL)
+	{
 		return (NULL);
+	}
+	i = 0;
 	while (i < len)
 	{
-		new[i] = (*f)(i, s[i]);
-		++i;
+		new_s[i] = f(i, s[i]);
+		i++;
 	}
-	new[i] = 0;
-	return (new);
+	new_s[i] = '\0';
+	return (new_s);
+}
+/* #include <stdio.h>
+
+char next_char(unsigned int i, char c) {
+	printf("%i\n", i);
+    return c + 1;
 }
 
-/*char	ft_test(unsigned int i, char s)
-{
-	s += i;
-}
-int	main()
-{
-	char	str[] = "Ola";
-	ft_putendl_fd(ft_strmapi(str, ft_test), 1);
-}*/
+
+
+int main() {
+    char s[] = "Hello, World!";
+    char *result = ft_strmapi(s, next_char);
+    printf("%s\n", result);  // Should print "Ifmmp-!Xpsme\""
+    free(result);
+
+    char s2[] = "abc";
+    result = ft_strmapi(s2, next_char);
+    printf("%s\n", result);  // Should print "bcd"
+    free(result);
+
+    return 0;
+} */

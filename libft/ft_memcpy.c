@@ -3,36 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:02:47 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:02:50 by jotavare         ###   ########.fr       */
+/*   Created: 2023/09/14 15:15:32 by esteizag          #+#    #+#             */
+/*   Updated: 2023/09/14 15:15:34 by esteizag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-#include "libft.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t len)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	if (!dest && !src)
-		return (dest);
-	d = dest;
-	s = src;
-	while (n > 0)
+	if (!dst && !src)
+		return (NULL);
+	d = (unsigned char *) dst;
+	s = (unsigned char *) src;
+	while (len > 0)
 	{
-		*d++ = *s++;
-		n--;
+		*d = *s;
+		d++;
+		s++;
+		len--;
 	}
-	return (dest);
+	return (dst);
 }
-
-/*int main()
-{
-	char	str[] = "Vou ser copiado.";
-	char	dest[18];
-	ft_putstr_fd(ft_memcpy(dest, str, 18), 1);
-	ft_putchar_fd('\n', 1);
-}*/

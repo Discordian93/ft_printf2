@@ -3,36 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: esteizag <esteizag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:09:29 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:09:32 by jotavare         ###   ########.fr       */
+/*   Created: 2023/11/15 10:54:36 by esteizag          #+#    #+#             */
+/*   Updated: 2023/11/15 10:54:40 by esteizag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned int	i;
+	size_t		len;
+	size_t		i;
 
+	len = ft_strlen(s);
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
+	while (i < len)
 	{
-		(*f)(i, (s + i));
-		++i;
+		f(i, &s[i]);
+		i++;
 	}
 }
+/* 
+// Additional code for testing
+#include <stdio.h>
+#include <ctype.h>
 
-/*void	ft_test(unsigned int i, char *str)
-	{
-		*str += i;
-	}
-int	main()
-{
-	char	str[] = "aBcDeF";
-	ft_striteri(str, ft_test);
-	ft_putendl_fd(str, 1);
-}*/
+void to_upper(unsigned int i, char *c) {
+	printf("%i\n", i);
+    *c = toupper(*c);
+}
+
+int main() {
+    char s[] = "Hello, World!";
+    ft_striteri(s, to_upper);
+    printf("%s\n", s);  // Should print "HELLO, WORLD!"
+
+    char s2[] = "abc";
+    ft_striteri(s2, to_upper);
+    printf("%s\n", s2);  // Should print "ABC"
+
+    return 0;
+} */
