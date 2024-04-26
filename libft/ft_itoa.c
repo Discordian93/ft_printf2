@@ -19,7 +19,7 @@ static char	*handle_other_ints(int n);
 char		*ft_itoa(int n);
 
 static int	num_len(int n)
-{	
+{
 	int	len;
 
 	len = 0;
@@ -93,7 +93,7 @@ static char	*handle_other_ints(int n)
 }
 
 char	*ft_itoa(int n)
-{	
+{
 	char	*representation;
 
 	if (n == -2147483648)
@@ -111,7 +111,7 @@ char	*ft_itoa(int n)
 		return (handle_zero());
 	}
 	else
-	{	
+	{
 		return (handle_other_ints(n));
 	}
 }

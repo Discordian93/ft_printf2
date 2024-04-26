@@ -24,7 +24,7 @@ static void	lstclear_rec(t_list *current_node, void (*del)(void*))
 }
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
-{	
+{
 	t_list	*current_node;
 
 	if (lst == NULL)

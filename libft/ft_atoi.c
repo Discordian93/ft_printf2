@@ -37,7 +37,7 @@ static int	evaluate_sign(const char *str)
 }
 
 int	ft_atoi(const char *str)
-{	
+{
 	int	sign;
 	int	sum;
 

@@ -50,7 +50,7 @@ static char	*extract_word(char const *s, char c)
 	word = (char *)malloc(sizeof(char) * (len +1));
 	word_address = word;
 	if (word != NULL)
-	{	
+	{
 		while (len > 0)
 		{
 			*word = *s;
