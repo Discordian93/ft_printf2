@@ -3,49 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 14:53:49 by esteizag          #+#    #+#             */
-/*   Updated: 2023/09/15 14:53:51 by esteizag         ###   ########.fr       */
+/*   Created: 2022/11/22 18:12:48 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 18:12:50 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
+//#include <stdio.h>
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t	dstlen;
-	size_t	srclen;
 	size_t	i;
+	size_t	j;
+	char	*pt_src;
 
-	dstlen = ft_strlen(dst);
-	srclen = ft_strlen(src);
-	if (size <= dstlen)
-		return (size + srclen);
+	pt_src = (char *)src;
 	i = 0;
-	while (src[i] != '\0' && dstlen + i < size - 1)
+	while (i < size && *dst)
 	{
-		dst[dstlen + i] = src[i];
+		dst++;
 		i++;
 	}
-	dst[dstlen + i] = '\0';
-	return (dstlen + srclen);
+	if (i == size)
+		return (i + ft_strlen(src));
+	j = 0;
+	while (pt_src[j])
+	{
+		if (j < size - i - 1)
+			*dst++ = pt_src[j];
+		j++;
+	}
+	*dst = 0;
+	return (j + i);
 }
 
-/* #include <stdio.h>
-
-int main()
+/*int	main()
 {
-	char dst[50] = "Hello";
-	const char *src = " World!";
-	size_t size = sizeof(dst);
-
-	printf("Before ft_strlcat: %s\n", dst);
-	size_t ret = ft_strlcat(dst, src, size);
-	printf("After ft_strlcat: %s\n", dst);
-	printf("Returned value: %zu\n", ret);
-
-	return 0;
-}
- */
+	char	dest[40] = "nem me vais ver!";
+	char	src[] = "nem a mim, mas vais saber o nosso tamanho!";
+	ft_putnbr_fd(ft_strlcat(dest, src, 15), 1);
+	ft_putchar_fd('\n', 1);
+	printf("%s", dest);
+}*/

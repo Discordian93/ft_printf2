@@ -1,45 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:13:21 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:13:23 by jotavare         ###   ########.fr       */
+/*   Created: 2022/11/22 18:02:06 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 18:02:08 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+t_list	*ft_lstnew(void *content)
 {
-	char	*new;
-	size_t	len;
-	size_t	i;
+	t_list	*new;
 
-	i = 0;
-	if (!s)
-		return (ft_strdup(""));
-	len = ft_strlen(s);
-	new = (char *)malloc(sizeof(char) * (len + 1));
-	if (!new)
-		return (NULL);
-	while (i < len)
+	new = malloc(sizeof(t_list));
+	if (new == NULL)
 	{
-		new[i] = (*f)(i, s[i]);
-		++i;
+		return (0);
 	}
-	new[i] = 0;
+	new -> content = content;
+	new -> next = NULL;
 	return (new);
 }
 
-/*char	ft_test(unsigned int i, char s)
+/*int	main(void)
 {
-	s += i;
-}
-int	main()
-{
-	char	str[] = "Ola";
-	ft_putendl_fd(ft_strmapi(str, ft_test), 1);
+	char	*str;
+
+	t_list	*elem;
+	str = (char *)malloc(6*sizeof(char));
+	str = "Hello";
+	elem = ft_lstnew((void *)str);
+	printf("%s\n", (char *)elem->content);
+	free(new->content);
 }*/

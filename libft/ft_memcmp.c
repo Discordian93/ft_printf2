@@ -3,29 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 17:26:35 by esteizag          #+#    #+#             */
-/*   Updated: 2023/09/15 17:26:37 by esteizag         ###   ########.fr       */
+/*   Created: 2022/11/22 18:02:35 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 18:02:37 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+#include "libft.h"
+
+int	ft_memcmp(void *dest, const void *src, size_t n)
 {
-	unsigned char	*p1;
-	unsigned char	*p2;
+	unsigned char	*d;
+	unsigned char	*s;
 
-	while (n--)
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	while (n && *d == *s)
 	{
-		p1 = (unsigned char *) s1;
-		p2 = (unsigned char *) s2;
-		if (*p1 != *p2)
-		{
-			return (*p1 - *p2);
-		}
-		s1++;
-		s2++;
+		++d;
+		++s;
+		--n;
 	}
-	return (0);
+	if (n)
+		return (*d - *s);
+	else
+		return (0);
 }
+
+/*int main()
+{
+	char	str[] = "Ola e adeus";
+	char	str1[] = "Bom dia e boa noite";
+	ft_putnbr_fd(ft_memcmp(str, str1, 5), 1);
+}*/

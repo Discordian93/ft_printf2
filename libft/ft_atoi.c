@@ -3,85 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 19:29:01 by esteizag          #+#    #+#             */
-/*   Updated: 2023/09/23 19:29:03 by esteizag         ###   ########.fr       */
+/*   Created: 2022/11/22 17:50:16 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 17:50:21 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static const char	*find_start(const char *str)
-{
-	while ((*str >= 9 && *str <= 13) || *str == 32)
-	{
-		str++;
-	}
-	return (str);
-}
-
-static int	evaluate_sign(const char *str)
-{
-	int	sign;
-
-	if (*str == '-')
-	{
-		sign = -1;
-	}
-	else
-	{
-		sign = 1;
-	}
-	return (sign);
-}
-
 int	ft_atoi(const char *str)
-{	
-	int	sign;
-	int	sum;
+{
+	int	i;
+	int	b;
+	int	c;
 
-	str = find_start(str);
-	if (ft_strncmp(str, "-2147483648", ft_strlen("-2147483648")) == 0)
+	i = 0;
+	b = 1;
+	c = 0;
+	while (str[i] == '\t' || str[i] == '\r' || str[i] == ' '
+		|| str[i] == '\f' || str[i] == '\v' || str[i] == '\n')
+		++i;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		return (-2147483648);
+		if (str[i] == '-')
+			b *= -1;
+		++i;
 	}
-	sign = evaluate_sign(str);
-	if (*str == '+' || *str == '-')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		str++;
+		c = c * 10 + (str[i] - '0');
+		++i;
 	}
-	sum = 0;
-	while (*str >= '0' && *str <= '9')
-	{
-		sum = sum * 10 + (*str - '0');
-		str++;
-	}
-	return (sign * sum);
+	return (c * b);
 }
 
-/* #include <stdio.h>
-#include <stdlib.h>
-
-// Your ft_atoi function goes here
-
-int main(void)
+/*int main()
 {
-    char *test_cases[] = {
-        "42",       // Expected: 42
-        "-42",      // Expected: -42
-        "   42",    // Expected: 42
-        "\t\n\v\f\r42", // Expected: 42
-		"+123",
-        NULL
-    };
-
-    for (int i = 0; test_cases[i] != NULL; i++)
-    {
-        printf("Test case \"%s\":\n", test_cases[i]);
-        printf("atoi: %d\n", atoi(test_cases[i]));
-        printf("ft_atoi: %d\n\n", ft_atoi(test_cases[i]));
-    }
-
-    return 0;
-} */
+	char str1[] = "15613";
+	char str2[] = "-15613";
+	char str3[] = "+15asd613";
+	char str4[] = "-1561dase3";
+	ft_putnbr_fd(ft_atoi(str1), 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(ft_atoi(str2), 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(ft_atoi(str3), 1);
+	ft_putchar_fd('\n', 1);
+	ft_putnbr_fd(ft_atoi(str4), 1);
+	ft_putchar_fd('\n', 1);
+}*/

@@ -3,32 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: esteizag <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/23 18:20:19 by esteizag          #+#    #+#             */
-/*   Updated: 2023/09/23 18:20:21 by esteizag         ###   ########.fr       */
+/*   Created: 2022/11/22 18:13:48 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 18:13:50 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	if (ft_strlen(needle) == 0)
+	size_t	n;
+
+	if (*little == 0)
+		return ((char *)big);
+	n = ft_strlen(little);
+	if (len == 0)
+		return (0);
+	while (*big && n <= len)
 	{
-		return ((char *)haystack);
+		if (*big == *little && ft_strncmp(big, little, n) == 0)
+			return ((char *)big);
+		++big;
+		--len;
 	}
-	else
-	{
-		while (*haystack != '\0' && len-- >= (unsigned int)ft_strlen(needle))
-		{
-			if (ft_strncmp(haystack, needle, ft_strlen(needle)) == 0)
-			{
-				return ((char *)haystack);
-			}
-			haystack++;
-		}
-		return (NULL);
-	}
+	return (NULL);
 }
+
+/*int	main()
+{
+	char	str[] = "Indo eu, indo eu";
+	char	str1[] = "indo";
+	ft_putendl_fd(ft_strnstr(str, str1, ft_strlen(str)), 1);
+}*/

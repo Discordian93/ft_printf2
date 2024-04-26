@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jotavare <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/22 18:15:08 by jotavare          #+#    #+#             */
-/*   Updated: 2022/11/22 18:15:09 by jotavare         ###   ########.fr       */
+/*   Created: 2022/11/22 18:01:57 by jotavare          #+#    #+#             */
+/*   Updated: 2022/11/22 18:01:58 by jotavare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_toupper(int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if ('a' <= c && c <= 'z')
-		return (c - 32);
-	else
-		return (c);
-}
+	t_list	*head;
+	t_list	*tmp;
 
-/*int	main()
-{
-	ft_putchar_fd(ft_toupper('a'), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putchar_fd(ft_toupper('u'), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putchar_fd(ft_toupper('A'), 1);
-	ft_putchar_fd('\n', 1);
-	ft_putchar_fd(ft_toupper('5'), 1);
-	ft_putchar_fd('\n', 1);
-}*/
+	head = NULL;
+	while (lst)
+	{
+		tmp = ft_lstnew((*f)(lst -> content));
+		if (!tmp)
+		{
+			ft_lstclear(&head, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&head, tmp);
+		lst = lst -> next;
+	}
+	return (head);
+}
