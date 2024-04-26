@@ -16,6 +16,12 @@ void	handle_x(unsigned long long n, int *count, int lowercase, int is_p)
 		*count += 2;
 		ft_putstr_fd("0x", 1);
 	}
+	else
+	{
+		n = (unsigned int) n;
+		free(hex_repr);
+		hex_repr = num_to_hex(n);
+	}
 	if (lowercase)
 		hex_to_min(hex_repr);
 	ft_putstr_fd(hex_repr, 1);
@@ -31,8 +37,9 @@ void	handle_char(char c, int *count)
 }
 
 void	handle_string(char *s, int *count)
-{	if (s == NULL)
-		return ;
+{
+	if (s == NULL)
+		s = "(null)" ;
 	(*count) += ft_strlen(s);
 	ft_putstr_fd(s, 1);
 }
