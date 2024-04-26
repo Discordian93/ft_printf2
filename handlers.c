@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handlers.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: meltek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/26 06:54:58 by meltek            #+#    #+#             */
+/*   Updated: 2024/04/26 06:55:00 by meltek           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "libft/libft.h"
 #include "hexhelpers.h"
@@ -28,7 +40,6 @@ void	handle_x(unsigned long long n, int *count, int lowercase, int is_p)
 	*count += ft_strlen(hex_repr);
 	free(hex_repr);
 }
-
 
 void	handle_char(char c, int *count)
 {
