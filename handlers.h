@@ -18,5 +18,6 @@ void		handle_char(char c, int *count);
 void		handle_string(char *s, int *count);
 void		handle_u(unsigned long long u, int *count);
 void		handle_num(int n, int *count);
+int			ft_printf(char *s, ...);
 
 #endif
