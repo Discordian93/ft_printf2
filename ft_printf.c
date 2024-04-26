@@ -18,8 +18,15 @@
 #include <stdio.h>
 #include <limits.h>
 
-static void	handle_formats(va_list args, char const *s, int *count_addr)
+static int	handle_formats(va_list args, char const *s, int *count_addr, int *f)
 {
+	int	valid;
+
+	valid = 0;
+	if (ft_strchr("cspdiuxX%", *s) != NULL)
+		valid = 1;
+	else
+		*f = 0;
 	if (*s == 'c')
 		handle_char(va_arg(args, int), count_addr);
 	if (*s == 's')
@@ -33,13 +40,17 @@ static void	handle_formats(va_list args, char const *s, int *count_addr)
 		handle_num(va_arg(args, int), count_addr);
 	if (*s == '%')
 		handle_char('%', count_addr);
+	return (valid);
 }
 
 int	ft_printf(char const *s, ...)
 {
 	va_list	args;
 	int		count;
+	int		valid;
+	int		final_valid;
 
+	final_valid = 1;
 	count = 0;
 	va_start(args, s);
 	while (*s != '\0')
@@ -47,12 +58,16 @@ int	ft_printf(char const *s, ...)
 		if (*s == '%')
 		{
 			s++;
-			handle_formats(args, s, &count);
+			valid = handle_formats(args, s, &count, &final_valid);
+			if (!valid)
+				s--;
 		}
 		else
 			handle_char(*s, &count);
 		s++;
 	}
 	va_end(args);
-	return (count);
+	if (final_valid)
+		return (count);
+	return (-1);
 }
